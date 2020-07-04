@@ -5,8 +5,8 @@ defmodule ChatApplication do
     import Supervisor.Spec
 
     children = [
-      worker(ChatServer, []),
-      worker(ChatClient, [])
+      worker(ChatServer.Server, []),
+      worker(ChatClient.Server, [])
     ]
 
     opts = [

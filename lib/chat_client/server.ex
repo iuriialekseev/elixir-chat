@@ -1,6 +1,10 @@
 defmodule ChatClient.Server do
   use GenServer
 
+  def start_link() do
+    GenServer.start_link(__MODULE__, nil, name: :client)
+  end
+
   def init(_) do
     IO.puts("Chat client started on #{node()}")
     {:ok, {_server = nil}}

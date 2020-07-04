@@ -1,6 +1,10 @@
 defmodule ChatServer.Server do
   use GenServer
 
+  def start_link() do
+    GenServer.start_link(__MODULE__, nil, name: :server)
+  end
+
   def init(_) do
     IO.puts("Chat server started on #{node()}")
     {:ok, {_members = MapSet.new()}}
