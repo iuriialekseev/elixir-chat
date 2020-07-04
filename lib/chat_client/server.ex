@@ -31,7 +31,20 @@ defmodule ChatClient.Server do
   end
 
   def handle_cast({:receive, text, sender}, {server}) do
-    IO.puts("#{sender}: #{text}")
+    cond do
+      sender == node() ->
+        print_message(text, sender, :yellow)
+
+      true ->
+        print_message(text, sender, :blue)
+    end
+
     {:noreply, {server}}
+  end
+
+  defp print_message(text, sender, color) do
+    [color, "#{sender}:\n#{text}\n"]
+    |> IO.ANSI.format(true)
+    |> IO.puts()
   end
 end
