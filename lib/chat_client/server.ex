@@ -27,7 +27,7 @@ defmodule ChatClient.Server do
   end
 
   def handle_cast({:receive, text, sender}, {server}) do
-    IO.puts("#{sender}: #{text}\n")
+    IO.puts("#{sender}: #{text}")
     {:noreply, {server}}
   end
 end
